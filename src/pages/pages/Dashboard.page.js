@@ -94,35 +94,45 @@ const Dashboard = () => {
     }
     // console.log("resp", resp);
     if (resp.vacas === undefined || resp.calendarios === undefined || resp.historialMedicos === undefined || resp.farms === undefined) return;
+    if (resp.farms) {
+      const farms = resp.farms.map(farm => ({ ...farm, key: farm._id, afterDelete }))
+
+
+
+      chartdata.farmData = farms;
+
+    }
     if (resp.vacas) {
       const vacas = resp.vacas.map(vaca => ({ ...vaca, key: vaca._id, afterDelete }))
 
       // data farm
       const dictionary = {};
       vacas.forEach(vaca => {
-        if (dictionary[vaca.farm]) {
-          dictionary[vaca.farm] += 1;
+        const x = chartdata.farmData.find(farm => farm._id === vaca?.farm)?.nombre || "unknown";
+
+        if (dictionary[x]) {
+          dictionary[x] += 1;
         } else {
-          dictionary[vaca.farm] = 1;
+          dictionary[x] = 1;
         }
       });
+      const colors = Object.keys(dictionary).map(() => {
+        return '#' + Math.floor(Math.random() * 16777215).toString(16);
+      });
+      console.log("colors", colors);
       chartdata.vacaData = {
         labels: Object.keys(dictionary),
         datasets: [
           {
             label: '# of Vacas',
             data: Object.values(dictionary),
+            backgroundColor: colors,
             borderWidth: 1,
           },
         ],
       }
     }
-    if (resp.farms) {
-      const farms = resp.farms.map(farm => ({ ...farm, key: farm._id, afterDelete }))
 
-      chartdata.farmData = farms;
-      
-    }
     if (resp.calendarios) {
       // get next 3 events  sorted by fecha 
       const calendarios = resp.calendarios.map(calendario => ({ ...calendario, key: calendario._id, afterDelete }))
@@ -174,19 +184,20 @@ const Dashboard = () => {
 
     <div >
       <h2> Farms por Ubicacion</h2>
-      {data && data.farmData? data.farmData.map(farm =>
+      {data && data.farmData ? data.farmData.map(farm =>
         <Card>
           <CardContent>
-            <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+
+            <Typography variant="h5" component="div">
               {farm.nombre}
             </Typography>
-            <Typography variant="h5" component="div">
-              {farm.ubicacion}
+            <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+              {farm.ubicacion} - {farm._id}
             </Typography>
           </CardContent>
 
         </Card>) : null}
-        
+
     </div>
 
   </PageContainer>

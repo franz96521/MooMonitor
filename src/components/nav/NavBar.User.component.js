@@ -4,7 +4,7 @@ import { Menu as MenuIcon, Add, PieChart, Logout, Home } from '@mui/icons-materi
 import { Link } from 'react-router-dom';
 import { UserContext } from '../../contexts/user.context';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-
+import logo from '../../logo.png';
 import 'bootstrap/dist/css/bootstrap.css';
 
 const NavBar = () => {
@@ -18,19 +18,22 @@ const NavBar = () => {
 	};
 	return (
 		<>
-			<AppBar position="static">
+			<AppBar position="static"
+			 style={{ backgroundColor: "white" }} >
 				<Toolbar>
 					<IconButton
 						size="large"
 						edge="start"
-						color="inherit"
+						color="inehrit"
 						aria-label="menu"
 						onClick={toggleDrawer}
 					>
 						<MenuIcon />
 					</IconButton>
 					<Typography variant="h6" component={Link} to="/Dashboard" sx={{ flexGrow: 1, textDecoration: "none", color: "white" }}>
-						MooMonitor
+						<Link to="/Dashboard" style={{ textDecoration: "none", color: "inherit" }}>
+							<img src={logo} style={{ height: "3rem" }} />
+						</Link>
 					</Typography>
 				</Toolbar>
 			</AppBar>
