@@ -21,6 +21,9 @@ import EditVaca from "./pages/edit/EditVaca.page";
 import EditCalendario from "./pages/edit/EditCalendario.page";
 import EditHistorialMedico from "./pages/edit/EditHistorialMedico.page";
 import EditFarm from "./pages/edit/EditFarm.page";
+import Pricing from "./pages/pages/Pricing.page";
+import Mision from "./pages/pages/Mision.page";
+import Benefits from "./pages/pages/Benefits.page";
 
 function App() {
   return (
@@ -31,6 +34,10 @@ function App() {
             <Route exact path="/" element={<Home />} />
             <Route exact path="/login" element={<Login />} />
             <Route exact path="/signup" element={<Signup />} />
+            <Route exact path="/pricing" element={<Pricing />} />
+            <Route exact path="/mision" element={<Mision />} />
+            <Route exact path="/benefits" element={<Benefits />} />
+
           </Route>
           <Route element={<PrivateRoute />}>
             <Route exact path="/dashboard" element={<Dashboard />} />

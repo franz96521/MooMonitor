@@ -5,10 +5,12 @@ import { gql, request } from "graphql-request";
 import { GRAPHQL_ENDPOINT } from "../../realm/constants";
 import VacaForm from "../../components/forms/VacaForm.component";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const AddVaca = () => {
   const { user } = useContext(UserContext);
   const navigate = useNavigate();
+  const [farm, setFarm] = useState([]);
 
   // Some prefilled form state
   const [form, setForm] = useState({
@@ -26,6 +28,15 @@ const AddVaca = () => {
   mutation AddVaca($data: VacaInsertInput!) {
     insertOneVaca(data: $data) {
       _id
+    }
+  }
+  `;
+  const getAllFarmQuery = gql`
+  query getAllFarms {
+    farms(sortBy: UBICACION_DESC) {
+      _id
+      ubicacion
+      nombre
     }
   }
   `;
@@ -50,7 +61,7 @@ const AddVaca = () => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    const { peso, raza, farm, group, numero, author} = form;
+    const { peso, raza, farm, group, numero, author } = form;
     if (peso.length === 0 || raza.length === 0 || farm.length === 0 || group.length === 0 || numero.length === 0 || author.length === 0) {
       return;
     }
@@ -63,9 +74,22 @@ const AddVaca = () => {
       alert(error)
     }
   };
+  const loadFarms = async () => {
+    const resp = await request(GRAPHQL_ENDPOINT,
+      getAllFarmQuery,
+      queryVariables,
+      headers
+    );
+    console.log("resp");
+    console.log(resp.farms);
+    setFarm(_ => resp.farms.map(expense => ({ ...expense, key: expense._id })));
+  };
 
+  useEffect(() => {
+    loadFarms();
+  }, []);
   return <PageContainer>
-    <VacaForm onSubmit={onSubmit} form={form} setForm={setForm} title="Create Vaca" />
+    <VacaForm onSubmit={onSubmit} form={form} setForm={setForm} farms={farm} title="Create Vaca" />
   </PageContainer>
 }
 

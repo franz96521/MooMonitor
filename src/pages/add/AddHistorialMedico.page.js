@@ -5,11 +5,12 @@ import { gql, request } from "graphql-request";
 import { GRAPHQL_ENDPOINT } from "../../realm/constants";
 import HistorialMedicoForm from "../../components/forms/HistorialMedicoForm.component";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const AddHistorialMedico = () => {
     const { user } = useContext(UserContext);
     const navigate = useNavigate();
-
+    const [vacas, setVacas] = useState([]);
     // Some prefilled form state
     const [form, setForm] = useState({
         title: "",
@@ -27,6 +28,21 @@ const AddHistorialMedico = () => {
     }
   }
   `;
+
+    const getVacasQuery = gql`
+    query getAllVacas {
+        vacas(sortBy: NUMERO_DESC) {
+          _id
+          peso
+          raza
+          farm
+          group
+          numero
+          nacimiento
+        }
+      }
+    `;
+
 
     // All the data that needs to be sent to the GraphQL endpoint
     // to create an historialMedico will be passed through queryVariables.
@@ -60,8 +76,22 @@ const AddHistorialMedico = () => {
         }
     };
 
+    const loadVacas = async () => {
+        const resp = await request(GRAPHQL_ENDPOINT,
+            getVacasQuery,
+            {},
+            headers
+        );
+        setVacas(_ => resp.vacas.map(vaca => ({ ...vaca, key: vaca._id })));
+        console.log("vacas", resp.vacas);
+    };
+
+    useEffect(() => {
+        loadVacas();
+    }, []);
+
     return <PageContainer>
-        <HistorialMedicoForm onSubmit={onSubmit} form={form} setForm={setForm} title="Create HistorialMedico" />
+        <HistorialMedicoForm onSubmit={onSubmit} form={form} setForm={setForm} vacas={vacas} title="Create HistorialMedico" />
     </PageContainer>
 }
 

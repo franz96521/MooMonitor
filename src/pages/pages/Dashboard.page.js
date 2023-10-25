@@ -119,25 +119,9 @@ const Dashboard = () => {
     }
     if (resp.farms) {
       const farms = resp.farms.map(farm => ({ ...farm, key: farm._id, afterDelete }))
-      // data farm
-      const dictionary = {};
-      farms.forEach(farm => {
-        if (dictionary[farm.ubicacion]) {
-          dictionary[farm.ubicacion] += 1;
-        } else {
-          dictionary[farm.ubicacion] = 1;
-        }
-      });
-      chartdata.farmData = {
-        labels: Object.keys(dictionary),
-        datasets: [
-          {
-            label: '# of Farms',
-            data: Object.values(dictionary),
-            borderWidth: 1,
-          },
-        ],
-      }
+
+      chartdata.farmData = farms;
+      
     }
     if (resp.calendarios) {
       // get next 3 events  sorted by fecha 
@@ -145,18 +129,18 @@ const Dashboard = () => {
       calendarios.sort((a, b) => {
         const dateA = new Date(a.fecha);
         const dateB = new Date(b.fecha);
-        return  dateB-dateA;
+        return dateB - dateA;
       });
       // obtener los eventos de los proximos 3 dias
       const today = new Date();
       const tomorrow = new Date(today);
-      
+
       tomorrow.setDate(tomorrow.getDate() + 3);
       const next3Days = calendarios.filter(calendario => {
         const date = new Date(calendario.fecha);
         return date >= today && date <= tomorrow;
       });
-      
+
       chartdata.calendarioData = {
         calendarios: calendarios.slice(0, 3),
       }
@@ -181,7 +165,6 @@ const Dashboard = () => {
               {calendario.description}
             </Typography>
           </CardContent>
-
         </Card>) : null}
     </div>
     <div >
@@ -191,7 +174,19 @@ const Dashboard = () => {
 
     <div >
       <h2> Farms por Ubicacion</h2>
-      {data ? <PolarArea data={data.farmData} /> : null}
+      {data && data.farmData? data.farmData.map(farm =>
+        <Card>
+          <CardContent>
+            <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+              {farm.nombre}
+            </Typography>
+            <Typography variant="h5" component="div">
+              {farm.ubicacion}
+            </Typography>
+          </CardContent>
+
+        </Card>) : null}
+        
     </div>
 
   </PageContainer>

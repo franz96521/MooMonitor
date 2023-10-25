@@ -1,10 +1,13 @@
 import { Button, TextField } from "@mui/material";
 import CustomDatePicker from "../individual/CustomDatePicker.component";
 import PageContainer from "../individual/PageContainer.component";
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
 
-const VacaForm = ({ onSubmit, form, setForm, editing }) => {
+const VacaForm = ({ onSubmit, form, setForm, editing,farms }) => {
+  
   const onFormInputChange = (event) => {
-    const { name, value } = event.target;
+    const { name, value } = event.target;    
     setForm({ ...form, [name]: value });
   };
 
@@ -29,15 +32,7 @@ const VacaForm = ({ onSubmit, form, setForm, editing }) => {
         onChange={onFormInputChange}
         fullWidth
         style={{ marginBottom: "1rem" }} />
-        <TextField
-        label="farm"
-        type="text"
-        variant="outlined"
-        name="farm"
-        value={form.farm}
-        onChange={onFormInputChange}
-        fullWidth
-        style={{ marginBottom: "1rem" }} />
+       
         <TextField
         label="group"
         type="number"
@@ -56,6 +51,21 @@ const VacaForm = ({ onSubmit, form, setForm, editing }) => {
         onChange={onFormInputChange}
         fullWidth
         style={{ marginBottom: "1rem" }} />
+
+      <Select
+        label="farm"
+        type="text"
+        variant="outlined"
+        name="farm"
+        value={form.farm}
+        onChange={onFormInputChange}
+        style={{ marginBottom: "1rem" }}
+        fullWidth
+      >
+        {farms.map((farm) => (
+          <MenuItem key={farm._id} value={farm._id}>{farm.nombre} - {farm.ubicacion} - {farm._id}</MenuItem>
+        ))}
+      </Select>
       <CustomDatePicker
         label="nacimiento"
         value={form.createdAt}
