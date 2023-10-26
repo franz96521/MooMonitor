@@ -75,7 +75,7 @@ const Benefits = () => {
                         </div>
                     </div>
                     <div class="col-12 col-lg-6 col-xl-5">
-                        <img class="img-fluid rounded" loading="lazy" src="https://igualdadanimal.mx/app/uploads/2020/07/blog-vacas-maltrato-animal-crueldad-2-mx.jpg" alt="" />
+                        <img class="img-fluid rounded" loading="lazy" src="https://th.bing.com/th/id/R.9f9b1bca7a3b8ee99bfb339050d7b538?rik=suP2mg3QXdLbVA&pid=ImgRaw&r=0" alt="" />
                     </div>
                 </div>
             </div>

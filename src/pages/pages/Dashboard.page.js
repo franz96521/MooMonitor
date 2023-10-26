@@ -4,6 +4,7 @@ import PageContainer from "../../components/individual/PageContainer.component";
 import { UserContext } from '../../contexts/user.context';
 import { GRAPHQL_ENDPOINT } from '../../realm/constants';
 import { Card, CardContent, Grid, IconButton, Typography } from "@mui/material";
+import notifyMe from '../../components/individual/notifications.component';
 
 import {
   Chart as ChartJS,
@@ -151,6 +152,14 @@ const Dashboard = () => {
         return date >= today && date <= tomorrow;
       });
 
+      // send alert if event is today
+      const todayEvents = calendarios.filter(calendario => {
+        const date = new Date(calendario.fecha);
+        return date.getDate() === today.getDate() && date.getMonth() === today.getMonth() && date.getFullYear() === today.getFullYear();
+      });
+      todayEvents.forEach(event => {
+        notifyMe(event.title, event.description);
+      });
       chartdata.calendarioData = {
         calendarios: calendarios.slice(0, 3),
       }

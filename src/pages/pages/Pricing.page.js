@@ -107,20 +107,36 @@ const Pricing = () => {
             height: "90vh",
         }}>
             <div style={{ textAlign: "center" }}>
-                <h1 >Pricing </h1>
-                <p className="lead">
-                    The best prices for you
-                </p>
+                <h1 className="display-4">The best prices for you</h1>
             </div>
-            <div className="d-flex align-items-center justify-content-center">
+            <section>
+                <div className="d-flex align-items-center justify-content-center" >
+                    <img
+                        className="img-fluid rounded"
+                        loading="lazy"
+                        src="https://th.bing.com/th?id=OSK.HERO8Z5euZxaUFb7TaW-8c_qKi_DwytYPSXc5u8PjRdxDyY&w=472&h=280&c=13&rs=2&o=6&oif=webp&dpr=1.5&pid=SANGAM"
+                        alt=""
+                        style={{
+                            width: "50%",
+                            height: "auto",
+                            marginBottom: "2rem",
+                            borderRadius: "3rem"
+                        }}
+                    />
+                </div>
+            </section>
 
-                <CardGroup style={{
-                    width: "60%",
-                    margin: "auto"
-                }}>
-                    {plans}
-                </CardGroup>
-            </div>
+            <section>
+                <div className="d-flex align-items-center justify-content-center">
+
+                    <CardGroup style={{
+                        width: "60%",
+                        margin: "auto"
+                    }}>
+                        {plans}
+                    </CardGroup>
+                </div>
+            </section>
         </div>
     );
 };
