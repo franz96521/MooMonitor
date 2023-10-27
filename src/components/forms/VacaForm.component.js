@@ -4,10 +4,10 @@ import PageContainer from "../individual/PageContainer.component";
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 
-const VacaForm = ({ onSubmit, form, setForm, editing,farms }) => {
-  
+const VacaForm = ({ onSubmit, form, setForm, editing, farms }) => {
+
   const onFormInputChange = (event) => {
-    const { name, value } = event.target;    
+    const { name, value } = event.target;
     setForm({ ...form, [name]: value });
   };
 
@@ -22,7 +22,7 @@ const VacaForm = ({ onSubmit, form, setForm, editing,farms }) => {
         value={form.peso}
         onChange={onFormInputChange}
         fullWidth
-        style={{ marginBottom: "1rem" }} />      
+        style={{ marginBottom: "1rem" }} />
       <TextField
         label="raza"
         type="text"
@@ -32,8 +32,8 @@ const VacaForm = ({ onSubmit, form, setForm, editing,farms }) => {
         onChange={onFormInputChange}
         fullWidth
         style={{ marginBottom: "1rem" }} />
-       
-        <TextField
+
+      <TextField
         label="group"
         type="number"
         variant="outlined"
@@ -42,7 +42,7 @@ const VacaForm = ({ onSubmit, form, setForm, editing,farms }) => {
         onChange={onFormInputChange}
         fullWidth
         style={{ marginBottom: "1rem" }} />
-        <TextField
+      <TextField
         label="numero"
         type="number"
         variant="outlined"
@@ -52,20 +52,33 @@ const VacaForm = ({ onSubmit, form, setForm, editing,farms }) => {
         fullWidth
         style={{ marginBottom: "1rem" }} />
 
-      <Select
+
+      {editing ? <TextField
         label="farm"
         type="text"
         variant="outlined"
         name="farm"
         value={form.farm}
         onChange={onFormInputChange}
-        style={{ marginBottom: "1rem" }}
         fullWidth
-      >
-        {farms.map((farm) => (
-          <MenuItem key={farm._id} value={farm._id}>{farm.nombre} - {farm.ubicacion} - {farm._id}</MenuItem>
-        ))}
-      </Select>
+        style={{ marginBottom: "1rem" }} /> :
+        <Select
+          label="farm"
+          type="text"
+          variant="outlined"
+          name="farm"
+          value={form.farm}
+          onChange={onFormInputChange}
+          style={{ marginBottom: "1rem" }}
+          fullWidth
+        >
+          {farms.map((farm) => (
+            <MenuItem key={farm._id} value={farm._id}>{farm.nombre} - {farm.ubicacion} - {farm._id}</MenuItem>
+          ))}
+        </Select>
+
+
+      }
       <CustomDatePicker
         label="nacimiento"
         value={form.createdAt}

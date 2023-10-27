@@ -161,7 +161,7 @@ const Dashboard = () => {
         notifyMe(event.title, event.description);
       });
       chartdata.calendarioData = {
-        calendarios: calendarios.slice(0, 3),
+        calendarios: calendarios.slice(0, 4),
       }
     }
     setData(chartdata);
@@ -169,45 +169,55 @@ const Dashboard = () => {
 
   return <PageContainer>
     <h1>General Data</h1>
-    <div >
-      <h2> Next Events </h2>
-      {data && data.calendarioData ? data.calendarioData.calendarios.map(calendario =>
-        <Card>
-          <CardContent>
-            <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-              {calendario.fecha}
-            </Typography>
-            <Typography variant="h5" component="div">
-              {calendario.title}
-            </Typography>
-            <Typography sx={{ mb: 1.5 }} color="text.secondary">
-              {calendario.description}
-            </Typography>
-          </CardContent>
-        </Card>) : null}
-    </div>
-    <div >
-      <h2> Vacas por Farm</h2>
-      {data ? <PolarArea data={data.vacaData} /> : null}
-    </div>
+    <section class="py-3 py-md-5 py-xl-8">
+      <div class="container">
+        <div class="row gy-3 gy-md-4 gy-lg-0 align-items-lg-center">
+          <div class="col-12 col-lg-6 col-xl-5">
+            <h2> Next Events </h2>
+            {data && data.calendarioData ? data.calendarioData.calendarios.map(calendario =>
+              <Card>
+                <CardContent>
+                  <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                    {calendario.fecha}
+                  </Typography>
+                  <Typography variant="h5" component="div">
+                    {calendario.title}
+                  </Typography>
+                  <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                    {calendario.description}
+                  </Typography>
+                </CardContent>
+              </Card>) : null}
+          </div>
+          <div class="col-12 col-lg-6 col-xl-5">
+            <h2> Vacas por Farm</h2>
+            {data ? <PolarArea data={data.vacaData} /> : null}
+          </div>
 
-    <div >
-      <h2> Farms por Ubicacion</h2>
-      {data && data.farmData ? data.farmData.map(farm =>
-        <Card>
-          <CardContent>
+        </div>
 
-            <Typography variant="h5" component="div">
-              {farm.nombre}
-            </Typography>
-            <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-              {farm.ubicacion} - {farm._id}
-            </Typography>
-          </CardContent>
+      </div>
 
-        </Card>) : null}
+      <div class="container">
+        <h2> Farms por Ubicacion</h2>
+        {data && data.farmData ? data.farmData.map(farm =>
+          <Card>
+            <CardContent>
+              <Typography variant="h5" component="div">
+                {farm.nombre}
+              </Typography>
+              <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                {farm.ubicacion} - {farm._id}
+              </Typography>
+            </CardContent>
+          </Card>) : null}
+      </div>
+    </section>
 
-    </div>
+
+
+
+
 
   </PageContainer>
 }

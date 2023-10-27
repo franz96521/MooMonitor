@@ -37,7 +37,7 @@ const VacaForm = ({ onSubmit, form, setForm, editing, vacas }) => {
         onChange={onFormInputChange}
         fullWidth
         style={{ marginBottom: "1rem" }} />
-      {/* <TextField
+      {editing ? <TextField
         label="Vaca ID"
         type="text"
         variant="outlined"
@@ -45,23 +45,24 @@ const VacaForm = ({ onSubmit, form, setForm, editing, vacas }) => {
         value={form.vacaID}
         onChange={onFormInputChange}
         fullWidth
-        style={{ marginBottom: "1rem" }} /> */}
+        style={{ marginBottom: "1rem" }} /> :
 
-      <Select
-        label="Vaca ID"
-        type="text"
-        variant="outlined"
-        name="vacaID"
-        value={form.vacaID}
-        onChange={onFormInputChange}
-        style={{ marginBottom: "1rem" }}
-        fullWidth
-      >
-        {vacas.map((vaca) => (
-          <MenuItem key={vaca._id} value={vaca._id}>{vaca.numero} - {vaca.farm} - {vaca._id}</MenuItem>
-        ))}
+        <Select
+          label="Vaca ID"
+          type="text"
+          variant="outlined"
+          name="vacaID"
+          value={form.vacaID}
+          onChange={onFormInputChange}
+          style={{ marginBottom: "1rem" }}
+          fullWidth
+        >
+          {vacas.map((vaca) => (
+            <MenuItem key={vaca._id} value={vaca._id}>{vaca.numero} - {vaca.farm} - {vaca._id}</MenuItem>
+          ))}
 
-      </Select>
+        </Select>
+      }
       <CustomDatePicker
         label="createdAt"
         value={form.createdAt}
