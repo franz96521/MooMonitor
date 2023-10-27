@@ -140,7 +140,7 @@ const Dashboard = () => {
       calendarios.sort((a, b) => {
         const dateA = new Date(a.fecha);
         const dateB = new Date(b.fecha);
-        return dateB - dateA;
+        return dateA - dateB;
       });
       // obtener los eventos de los proximos 3 dias
       const today = new Date();
