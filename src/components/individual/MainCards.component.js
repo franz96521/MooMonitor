@@ -5,7 +5,7 @@ function MainCards() {
   return (
     <CardGroup style={{ margin: '1rem',padding:"1rem" }}>
       <Card >
-        <Card.Img variant="top" src="https://th.bing.com/th/id/OIP.c6LNuQclyKg2Ar3ffeHx9gHaFj?pid=ImgDet&rs=1" />
+        <Card.Img variant="top" src='https://www.procampo.com.ec/images/articulos/2019/Eficiencia_1.jpg'        />
         <Card.Body>
           <Card.Title>Únete a Nosotros</Card.Title>
           <Card.Text>
@@ -20,7 +20,7 @@ function MainCards() {
         </Card.Footer>
       </Card>
       <Card>
-        <Card.Img variant="top" src="https://th.bing.com/th/id/OIP.c6LNuQclyKg2Ar3ffeHx9gHaFj?pid=ImgDet&rs=1" />
+        <Card.Img variant="top" src="https://www.fdlreporter.com/gcdn/-mm-/9256e442ab5c35e06b5bf1661ee1d1d699c6576f/c=0-0-1865-1054/local/-/media/2015/08/19/FondduLac/B9318517963Z.1_20150819170644_000_GMLBM1OTJ.1-0.jpg?width=1320&height=746&fit=crop&format=pjpg&auto=webp" />
         <Card.Body>
           <Card.Title>Nuestro Compromiso con la Excelencia
           </Card.Title>

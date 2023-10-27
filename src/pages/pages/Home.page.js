@@ -5,13 +5,13 @@ const Home = () => {
   const images = [
     {
       url: "https://cdn.pixabay.com/photo/2022/02/04/10/31/cow-6992475_1280.jpg",
-      title: "First slide label",
-      description: "Nulla vitae elit libero, a pharetra augue mollis interdum.",
+      title: "Nuestro Compromiso con la Excelencia",
+      description: "En Moomonitor, estamos comprometidos con la excelencia en todo lo que hacemos \n Trabajamos en estrecha colaboración con ganaderos reales para desarrollar y perfeccionar nuestra aplicación, y estamos comprometidos con la seguridad de tus datos y la privacidad de tu información",
     },
     {
       url: "https://cdn.pixabay.com/photo/2016/08/06/19/23/highland-cow-1575005_1280.jpg",
-      title: "Second slide label",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      title: "Promoviendo el Crecimiento Saludable",
+      description: "Nuestra misión principal es promover el crecimiento saludable del ganado bovino. Creemos que un animal bien cuidado, con un desarrollo adecuado desde su etapa inicial, es una inversión en el futuro de la ganadería. Un ganado que crece de manera óptima no solo es más productivo, sino que también es más resistente a enfermedades y más eficiente en la conversión de alimentos en leche de alta calidad",
 
     },
   ]
@@ -37,7 +37,7 @@ function DarkVariantExample(props) {
             src={image.url}
             alt="First slide"
           />
-          <Carousel.Caption>
+          <Carousel.Caption style={{ backgroundColor: "rgb(254,254,254,.5)", margin:"1rem", borderRadius:"2rem"}}>
             <h5>{image.title}</h5>
             <p>
               {image.description}
@@ -127,7 +127,7 @@ function AboutProduct() {
                     </div>
                   </div>
                 </div>
-                
+
               </div>
             </div>
           </div>

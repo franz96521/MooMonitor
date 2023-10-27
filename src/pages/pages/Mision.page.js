@@ -6,7 +6,7 @@ const Mision = () => {
             <div class="container">
                 <div class="row gy-3 gy-md-4 gy-lg-0 align-items-lg-center">
                     <div class="col-12 col-lg-6 col-xl-5">
-                        <img class="img-fluid rounded" loading="lazy" src="https://igualdadanimal.mx/app/uploads/2020/07/blog-vacas-maltrato-animal-crueldad-2-mx.jpg" alt="" />
+                        <img class="img-fluid rounded" loading="lazy" src="https://imagenes.montevideo.com.uy/imgnoticias/201809/_W933_80/666069.jpg" alt="" />
                     </div>
                     <div class="col-12 col-lg-6 col-xl-7">
                         <div class="row justify-content-xl-center">
