@@ -146,33 +146,33 @@ const Dashboard = () => {
       const today = new Date();
       const tomorrow = new Date(today);
 
-      tomorrow.setDate(tomorrow.getDate() + 3);
       const next3Days = calendarios.filter(calendario => {
         const date = new Date(calendario.fecha);
-        return date >= today && date <= tomorrow;
+
+        return date.getDate() >= today.getDate() && date.getMonth() >= today.getMonth() && date.getFullYear() >= today.getFullYear();
       });
 
-      // send alert if event is today
-      const todayEvents = calendarios.filter(calendario => {
-        const date = new Date(calendario.fecha);
-        return date.getDate() === today.getDate() && date.getMonth() === today.getMonth() && date.getFullYear() === today.getFullYear();
-      });
-      todayEvents.forEach(event => {
-        notifyMe(event.title, event.description);
-      });
+
       chartdata.calendarioData = {
-        calendarios: calendarios.slice(0, 4),
+        calendarios: next3Days.slice(0, 4),
       }
     }
     setData(chartdata);
   }, [resp]);
 
+  useEffect(() => {
+    if (data?.calendarioData?.calendarios) {
+      data.calendarioData.calendarios.forEach(calendario => {
+        notifyMe(calendario.title, calendario.description);
+      })
+    }
+  }, [data?.calendarioData]);
   return <PageContainer>
     <h1>General Data</h1>
-    <section class="py-3 py-md-5 py-xl-8">
-      <div class="container">
-        <div class="row gy-3 gy-md-4 gy-lg-0 align-items-lg-center">
-          <div class="col-12 col-lg-6 col-xl-5">
+    <section className="py-3 py-md-5 py-xl-8">
+      <div className="container">
+        <div className="row gy-3 gy-md-4 gy-lg-0 align-items-lg-center">
+          <div className="col-12 col-lg-6 col-xl-5">
             <h2> Next Events </h2>
             {data && data.calendarioData ? data.calendarioData.calendarios.map(calendario =>
               <Card>
@@ -189,7 +189,7 @@ const Dashboard = () => {
                 </CardContent>
               </Card>) : null}
           </div>
-          <div class="col-12 col-lg-6 col-xl-5">
+          <div className="col-12 col-lg-6 col-xl-5">
             <h2> Vacas por Farm</h2>
             {data ? <PolarArea data={data.vacaData} /> : null}
           </div>
@@ -198,7 +198,7 @@ const Dashboard = () => {
 
       </div>
 
-      <div class="container">
+      <div className="container">
         <h2> Farms por Ubicacion</h2>
         {data && data.farmData ? data.farmData.map(farm =>
           <Card>

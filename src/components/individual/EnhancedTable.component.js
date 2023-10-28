@@ -163,7 +163,7 @@ const EnhancedTable = (props) => {
     const [selected, setSelected] = useState([]);
     const [page, setPage] = useState(0);
     const [dense, setDense] = useState(false);
-    const [rowsPerPage, setRowsPerPage] = useState(0);
+    const [rowsPerPage, setRowsPerPage] = useState(5);
     const [visibleRows, setVisibleRows] = useState([]);
 
     const handleRequestSort = (
