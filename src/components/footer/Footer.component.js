@@ -35,7 +35,7 @@ export default function Footer() {
             }}
           >
             <Typography variant="caption" color="initial">
-              Copyright ©2023. [] Limited
+              Copyright © 2023 Limited
             </Typography>
           </Box>
         </Container>

@@ -29,6 +29,31 @@ const Signup = () => {
 
   // As explained in the Login page.
   const onSubmit = async () => {
+    // validate the form 
+    if (!form.email || !form.password) {
+      alert("Please enter an email and password");
+      return;
+    }
+
+    // validate valid email
+    const emailRegex = /\S+@\S+\.\S+/;
+    if (!emailRegex.test(form.email)) {
+      alert("Please enter a valid email");
+      return;
+    }
+
+    // validate password length and complexity
+    if (form.password.length < 8) {
+      alert("Please enter a password with at least 8 characters");
+      return;
+    }
+
+    if (!/\d/.test(form.password)) {
+      alert("Please enter a password with at least one number");
+      return;
+    }
+
+
     try {
       const user = await emailPasswordSignup(form.email, form.password);
       if (user) {
@@ -59,7 +84,7 @@ const Signup = () => {
       onInput={onFormInputChange}
       style={{ marginBottom: "1rem" }}
     />
-    <Button variant="contained" color="primary" onClick={onSubmit}>
+    <Button variant="contained" color="primary" onClick={onSubmit} name="Signup"> 
       Signup
     </Button>
     <p>Have an account already? <Link to="/login">Login</Link></p>

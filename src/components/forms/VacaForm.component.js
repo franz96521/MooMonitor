@@ -85,7 +85,7 @@ const VacaForm = ({ onSubmit, form, setForm, editing, farms }) => {
         onChange={(v) => { setForm({ ...form, createdAt: v }) }}
         style={{ marginBottom: "1rem", display: "block" }}
       />
-      <Button variant="contained" color="primary" onClick={onSubmit} type="submit">
+      <Button id="Button" variant="contained" color="primary" onClick={onSubmit} type="submit" >
         {editing ? "Update" : "Create"} vaca
       </Button>
     </form>

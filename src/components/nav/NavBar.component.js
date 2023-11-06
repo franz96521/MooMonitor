@@ -8,7 +8,7 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import logo from '../../logo.png';
 import { Link } from 'react-router-dom';
 
-function NavBar() {
+const NavBar = () => {
 	return (
 		<>
 			{['md'].map((expand) => (

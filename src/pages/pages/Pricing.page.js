@@ -70,7 +70,7 @@ const Plan = (props) => {
                     </small>
                 </h1>
                 <ul className="list-unstyled mt-3 mb-4">
-                    {props.features.map((feature: any, i: any) => (
+                    {props.features.map((feature, i) => (
                         <li key={i}>{feature}</li>
                     ))}
                 </ul>

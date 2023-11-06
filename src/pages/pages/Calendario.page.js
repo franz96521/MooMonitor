@@ -110,7 +110,7 @@ const Groups = () => {
   </PageContainer>
 }
 
-function createData(id, title, description, fecha) {
+export function createData(id, title, description, fecha) {
   return {
     id: id,
     title: title,
